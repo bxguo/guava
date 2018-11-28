@@ -16,19 +16,21 @@
 
 package com.google.common.base;
 
-import static com.google.common.testing.SerializableTester.reserialize;
-import static com.google.common.truth.Truth.assertThat;
-
 import com.google.common.annotations.GwtCompatible;
 import com.google.common.annotations.GwtIncompatible;
 import com.google.common.collect.FluentIterable;
 import com.google.common.collect.ImmutableList;
 import com.google.common.testing.EqualsTester;
 import com.google.common.testing.NullPointerTester;
+import junit.framework.TestCase;
+
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
-import junit.framework.TestCase;
+
+import static com.google.common.testing.SerializableTester.reserialize;
+import static com.google.common.truth.Truth.assertThat;
 
 /**
  * Unit test for {@link Optional}.
@@ -46,6 +48,12 @@ public final class OptionalTest extends TestCase {
   public void testToJavaUtil_instance() {
     assertEquals(java.util.Optional.empty(), Optional.absent().toJavaUtil());
     assertEquals(java.util.Optional.of("abc"), Optional.of("abc").toJavaUtil());
+
+    ArrayList<Object> objects = null;
+
+    Optional<ArrayList<Object>> of = Optional.fromNullable(objects);
+
+    System.out.println(of.isPresent());
   }
 
   public void testFromJavaUtil() {
@@ -56,6 +64,10 @@ public final class OptionalTest extends TestCase {
 
   public void testAbsent() {
     Optional<String> optionalName = Optional.absent();
+    System.out.println(optionalName.or("10"));
+    String a = "a";
+    String b = "b";
+    System.out.println(Optional.of(a).or(b));
     assertFalse(optionalName.isPresent());
   }
 
@@ -68,17 +80,23 @@ public final class OptionalTest extends TestCase {
       Optional.of(null);
       fail();
     } catch (NullPointerException expected) {
+      System.out.println(expected);
     }
   }
 
   public void testFromNullable() {
-    Optional<String> optionalName = Optional.fromNullable("bob");
+    Optional<String> optionalName = Optional.fromNullable(null);
     assertEquals("bob", optionalName.get());
   }
 
+  /**
+   * fromNullable(null)等价于引用缺失的Optional实例
+   */
   public void testFromNullable_null() {
     // not promised by spec, but easier to test
-    assertSame(Optional.absent(), Optional.fromNullable(null));
+    Optional<Object> actual = Optional.fromNullable(10);
+    System.out.println(actual);
+    assertSame(Optional.absent(), actual);
   }
 
   public void testIsPresent_no() {
@@ -289,13 +307,13 @@ public final class OptionalTest extends TestCase {
   public void testSampleCodeError2() {
     FluentIterable<? extends Number> numbers = getSomeNumbers();
     Optional<? extends Number> first = numbers.first();
-    // Number value = first.or(0.5); // error
+    //Number value = first.or(0.5); // error
   }
 
   @SuppressWarnings("unused") // compilation test
   public void testSampleCodeFine1() {
-    Optional<Number> optionalInt = Optional.of((Number) 1);
-    Number value = optionalInt.or(0.5); // fine
+    java.util.Optional<Number> optionalInt = java.util.Optional.of((Number) 1);
+    Number value = optionalInt.orElse(0.5); // fine
   }
 
   @SuppressWarnings("unused") // compilation test
@@ -307,6 +325,11 @@ public final class OptionalTest extends TestCase {
     @SuppressWarnings("unchecked") // safe covariant cast
     Optional<Number> first = (Optional) numbers.first();
     Number value = first.or(0.5); // fine
+
+    java.util.Optional<Object> o = java.util.Optional.ofNullable(null);
+
+    System.out.println(o.orElse(1));
+    //System.out.println(value);
   }
 
   @GwtIncompatible // NullPointerTester

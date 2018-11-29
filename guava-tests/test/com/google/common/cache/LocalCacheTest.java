@@ -265,6 +265,7 @@ public class LocalCacheTest extends TestCase {
     assertEquals(0, map.expireAfterWriteNanos);
     assertEquals(0, map.refreshNanos);
     assertEquals(CacheBuilder.UNSET_INT, map.maxWeight);
+    assertEquals(CacheBuilder.UNSET_INT, map.maxWeight);
 
     assertSame(EntryFactory.STRONG, map.entryFactory);
     assertSame(CacheBuilder.NullListener.INSTANCE, map.removalListener);

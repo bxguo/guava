@@ -459,6 +459,7 @@ public class MultimapsTest extends TestCase {
     assertEquals(multimap.hashCode(), multimapView.hashCode());
     assertEquals(multimap.size(), multimapView.size());
     assertTrue(multimapView.containsKey("foo"));
+
     assertTrue(multimapView.containsValue(1));
     assertTrue(multimapView.containsEntry("bar", 2));
     assertEquals(Collections.singleton(1), multimapView.get("foo"));

@@ -67,7 +67,7 @@ public final class OptionalTest extends TestCase {
     System.out.println(optionalName.or("10"));
     String a = "a";
     String b = "b";
-    System.out.println(Optional.of(a).or(b));
+    System.out.println(Optional.fromNullable(a).or(b));
     assertFalse(optionalName.isPresent());
   }
 

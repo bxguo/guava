@@ -50,11 +50,17 @@ public class PreconditionsTest extends TestCase {
       Preconditions.checkArgument(false);
       fail("no exception thrown");
     } catch (IllegalArgumentException expected) {
+      System.out.println(expected.getMessage());
     }
   }
 
   public void testCheckArgument_simpleMessage_success() {
-    Preconditions.checkArgument(true, IGNORE_ME);
+    int i = 1;
+    int j = 3;
+    Preconditions.checkArgument(i >= 0, "Argument was %s but expected nonnegative", i);
+    Preconditions.checkArgument(i > j, "Expected i < j, but %s > %s", i, j);
+
+    Preconditions.checkArgument(false, "错误信息提示");
   }
 
   public void testCheckArgument_simpleMessage_failure() {
@@ -225,7 +231,7 @@ public class PreconditionsTest extends TestCase {
 
   public void testCheckNotNull_complexMessage_failure() {
     try {
-      Preconditions.checkNotNull(null, FORMAT, 5);
+      Preconditions.checkNotNull(null, FORMAT, 6);
       fail("no exception thrown");
     } catch (NullPointerException expected) {
       verifyComplexMessage(expected);

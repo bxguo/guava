@@ -186,7 +186,7 @@ public class PreconditionsTest extends TestCase {
     Preconditions.checkState(true, "%s", IGNORE_ME);
   }
 
-  public void testCheckState_complexMessage_failure() {
+  public void test_complexMessage_failure() {
     try {
       Preconditions.checkState(false, FORMAT, 5);
       fail("no exception thrown");

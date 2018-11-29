@@ -63,4 +63,13 @@ public class ObjectsTest extends TestCase {
     NullPointerTester tester = new NullPointerTester();
     tester.testAllPublicStaticMethods(Objects.class);
   }
+
+  public void testtoStringHelper() throws Exception {
+    // Returns "ClassName{x=1}"
+    //Objects.toStringHelper(this).add("x", 1).toString();
+    // Returns "MyObject{x=1}"
+    //Objects.toStringHelper("MyObject").add("x", 1).toString();
+
+  }
+
 }

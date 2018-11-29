@@ -91,7 +91,7 @@ public class ThrowablesTest extends TestCase {
               methodThatThrowsUnchecked();
             } catch (Throwable t) {
               Throwables.propagateIfPossible(t);
-              throw new SomeChainingException(t);
+              //Throwables.propagate();
             }
           }
         };

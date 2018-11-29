@@ -18,6 +18,8 @@ package com.google.common.base;
 
 import com.google.common.annotations.GwtCompatible;
 import com.google.common.annotations.GwtIncompatible;
+import com.google.common.collect.ComparisonChain;
+import com.google.common.collect.Ordering;
 import com.google.common.testing.NullPointerTester;
 import junit.framework.TestCase;
 
@@ -28,6 +30,10 @@ import junit.framework.TestCase;
  */
 @GwtCompatible(emulated = true)
 public class ObjectsTest extends TestCase {
+
+  private double aString;
+  private double anInt;
+  private Object anEnum;
 
   public void testEqual() throws Exception {
     assertTrue(Objects.equal(1, 1));
@@ -42,6 +48,8 @@ public class ObjectsTest extends TestCase {
     assertFalse(Objects.equal(null, s1));
     assertFalse(Objects.equal("foo", "bar"));
     assertFalse(Objects.equal("1", 1));
+
+      System.out.println(null == null);
   }
 
   public void testHashCode() throws Exception {
@@ -69,7 +77,12 @@ public class ObjectsTest extends TestCase {
     //Objects.toStringHelper(this).add("x", 1).toString();
     // Returns "MyObject{x=1}"
     //Objects.toStringHelper("MyObject").add("x", 1).toString();
-
   }
 
+  public int compareTo(Foo that) {
+    return ComparisonChain.start()
+            .compare(this.aString, that.aString)
+            .compare(this.anInt, that.anInt)
+            .result();
+  }
 }

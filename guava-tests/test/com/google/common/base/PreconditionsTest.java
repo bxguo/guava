@@ -144,6 +144,7 @@ public class PreconditionsTest extends TestCase {
       Preconditions.checkArgument(false, FORMAT, 5);
       fail("no exception thrown");
     } catch (IllegalArgumentException expected) {
+      System.out.println(expected.getMessage());
       verifyComplexMessage(expected);
     }
   }

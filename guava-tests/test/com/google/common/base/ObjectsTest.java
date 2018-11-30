@@ -64,6 +64,7 @@ public class ObjectsTest extends TestCase {
     assertTrue(Objects.hashCode(1, null, 2) != Objects.hashCode(1, 2));
     assertTrue(Objects.hashCode(1, 2, 3) != Objects.hashCode(3, 2, 1));
     assertTrue(Objects.hashCode(1, 2, 3) != Objects.hashCode(2, 3, 1));
+    assertTrue(Objects.hashCode(1) == Objects.hashCode(1));
   }
 
   @GwtIncompatible // NullPointerTester

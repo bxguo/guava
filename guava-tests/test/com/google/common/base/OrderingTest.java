@@ -27,13 +27,13 @@ public class OrderingTest extends TestCase {
         Ordering<Iterable<Comparable>> lexicographical = Ordering.natural().lexicographical();
 
         //获取两个里面最大值
-        Function<Foo, Integer> function = new Function<Foo, Integer>() {
-            public Integer apply(Foo foo) {
-                return foo.notSortedBy;
+        Function<Foo, String> function = new Function<Foo, String>() {
+            public String apply(Foo foo) {
+                return foo.sortedBy;
             }
         };
-        Ordering<Foo> ordering = Ordering.natural().nullsFirst().onResultOf(function);
-        Foo max = ordering.max(new Foo("10", 10), new Foo("9", 9));
+        Ordering<Foo> ordering = Ordering.natural().nullsLast().nullsFirst().onResultOf(function);
+        Foo max = ordering.max(new Foo(null, 10), new Foo("9", 9));
         assertEquals(max.toString(), "Foo{sortedBy='10', notSortedBy=10}");
     }
 

@@ -536,6 +536,7 @@ public class OrderingTest extends TestCase {
 
   public void testLeastOfIterable_singleton_0() {
     List<Integer> result = numberOrdering.leastOf(Arrays.asList(3), 0);
+    System.out.println(result);
     assertTrue(result instanceof RandomAccess);
     assertListImmutable(result);
     assertEquals(ImmutableList.<Integer>of(), result);

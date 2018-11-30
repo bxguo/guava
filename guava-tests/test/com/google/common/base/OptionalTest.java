@@ -42,7 +42,7 @@ public final class OptionalTest extends TestCase {
   public void testToJavaUtil_static() {
     assertNull(Optional.toJavaUtil(null));
     assertEquals(java.util.Optional.empty(), Optional.toJavaUtil(Optional.absent()));
-    assertEquals(java.util.Optional.of("abc"), Optional.toJavaUtil(Optional.of("abc")));
+    assertEquals(java.util.Optional.of(null), Optional.toJavaUtil(Optional.of("abc")));
   }
 
   public void testToJavaUtil_instance() {
@@ -52,8 +52,8 @@ public final class OptionalTest extends TestCase {
     ArrayList<Object> objects = null;
 
     Optional<ArrayList<Object>> of = Optional.fromNullable(objects);
-
-    System.out.println(of.isPresent());
+    System.out.println(Optional.fromNullable(null));
+    //System.out.println(of.isPresent());
   }
 
   public void testFromJavaUtil() {
@@ -64,8 +64,8 @@ public final class OptionalTest extends TestCase {
 
   public void testAbsent() {
     Optional<String> optionalName = Optional.absent();
-    System.out.println(optionalName.or("10"));
-    String a = "a";
+    //System.out.println(optionalName.or("10"));
+    String a = null;
     String b = "b";
     System.out.println(Optional.fromNullable(a).or(b));
     assertFalse(optionalName.isPresent());

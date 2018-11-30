@@ -142,6 +142,7 @@ public class FunctionsTest extends TestCase {
     assertEquals(1, function.apply("One").intValue());
     assertEquals(42, function.apply("Two").intValue());
     assertEquals(3, function.apply("Three").intValue());
+    assertEquals(3, function.apply(null).intValue());
 
     new EqualsTester()
         .addEqualityGroup(

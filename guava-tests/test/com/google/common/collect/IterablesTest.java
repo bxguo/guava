@@ -59,6 +59,7 @@ public class IterablesTest extends TestCase {
 
   public void testSize0() {
     Iterable<String> iterable = Collections.emptySet();
+    //Predicates.
     assertEquals(0, Iterables.size(iterable));
   }
 

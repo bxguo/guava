@@ -18,13 +18,13 @@ package com.google.common.base;
 
 import com.google.common.annotations.GwtCompatible;
 import com.google.common.annotations.GwtIncompatible;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Maps;
+import com.google.common.collect.*;
 import com.google.common.testing.ClassSanityTester;
 import com.google.common.testing.EqualsTester;
 import com.google.common.testing.NullPointerTester;
 import com.google.common.testing.SerializableTester;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Map;
 import junit.framework.TestCase;
 
@@ -152,6 +152,30 @@ public class FunctionsTest extends TestCase {
         .addEqualityGroup(Functions.forMap(map, 43))
         .testEquals();
   }
+  public void testCompara() {
+    Function<String, Integer> lengthFunction = new Function<String, Integer>() {
+      public Integer apply(String string) {
+        return string.length();
+      }
+    };
+    //Predicate<String> allCaps = new Predicate<String>() {
+    //  public boolean apply(String string) {
+    //    return CharMatcher.JAVA_UPPER_CASE.matchesAllOf(string);
+    //  }
+    //};
+    List<String> strings = Lists.newArrayList("1");
+    //Multiset<Integer> lengths = HashMultiset.create(
+    //        Iterables.transform(Iterables.filter(strings, allCaps), lengthFunction));
+
+
+    //命令式
+    /*Multiset<Integer> lengths = HashMultiset.create();
+    for (String string : strings) {
+      if (CharMatcher.JAVA_UPPER_CASE.matchesAllOf(string)) {
+        lengths.add(string.length());
+      }
+    }*/
+    }
 
   @GwtIncompatible // SerializableTester
   public void testForMapWithDefaultSerializable() {

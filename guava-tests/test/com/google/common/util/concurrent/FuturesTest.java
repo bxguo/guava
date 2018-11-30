@@ -3429,8 +3429,9 @@ public class FuturesTest extends TestCase {
     SettableFuture<String> future1 = SettableFuture.create();
     SettableFuture<String> future2 = SettableFuture.create();
     SettableFuture<String> future3 = SettableFuture.create();
+    SettableFuture<String> future4 = SettableFuture.create();
     @SuppressWarnings("unchecked") // array is never modified
-    ListenableFuture<List<String>> compound = successfulAsList(future1, future2, future3);
+    ListenableFuture<List<String>> compound = successfulAsList(future1, future2, future3,future4);
     compound.addListener(listener, directExecutor());
 
     // First is cancelled, second fails, third succeeds

@@ -56,8 +56,10 @@ public class DiscreteDomainTest extends TestCase {
   }
 
   public void testLongsOffset() {
-    assertEquals(1, DiscreteDomain.longs().offset(0L, 1).longValue());
-    assertEquals(Long.MAX_VALUE, DiscreteDomain.longs().offset(0L, Long.MAX_VALUE).longValue());
+    DiscreteDomain<Long> longs = DiscreteDomain.longs();
+    long maxValue = Long.MAX_VALUE;
+    assertEquals(1, longs.offset(0L, 1).longValue());
+    assertEquals(maxValue, longs.offset(0L, maxValue).longValue());
   }
 
   public void testLongsOffsetExceptions() {

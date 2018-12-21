@@ -39,7 +39,8 @@ public class ParameterTest extends TestCase {
   public void testEquals() {
     EqualsTester tester = new EqualsTester();
     for (Method method : ParameterTest.class.getDeclaredMethods()) {
-      for (Parameter param : Invokable.from(method).getParameters()) {
+      Invokable<?, Object> invokable = Invokable.from(method);
+      for (Parameter param : invokable.getParameters()) {
         tester.addEqualityGroup(param);
       }
     }

@@ -159,8 +159,8 @@ public class TreeMultisetTest extends TestCase {
 
   public void testElementSetSortedSetMethods() {
     TreeMultiset<String> ms = TreeMultiset.create();
-    ms.add("c", 1);
-    ms.add("a", 3);
+    ms.add("c", 3);
+    ms.add("a", 1);
     ms.add("b", 2);
     SortedSet<String> elementSet = ms.elementSet();
 

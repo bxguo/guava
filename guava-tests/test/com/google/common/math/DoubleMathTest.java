@@ -344,6 +344,11 @@ public class DoubleMathTest extends TestCase {
     }
   }
 
+  public static void main(String[] args) {
+    int log2 = DoubleMath.log2(0.2, CEILING);
+    System.out.println(log2);
+  }
+
   @GwtIncompatible // DoubleMath.log2(double, RoundingMode), StrictMath
   public void testRoundLog2Ceiling() {
     for (double d : POSITIVE_FINITE_DOUBLE_CANDIDATES) {

@@ -57,12 +57,12 @@ public class CaseFormatTest extends TestCase {
 
   public void testLowerHyphenToLowerHyphen() {
     assertEquals("foo", LOWER_HYPHEN.to(LOWER_HYPHEN, "foo"));
-    assertEquals("foo-bar", LOWER_HYPHEN.to(LOWER_HYPHEN, "foo-bar"));
+    assertEquals("foo-bar", LOWER_HYPHEN.to(LOWER_HYPHEN, "-foo-bar"));
   }
 
   public void testLowerHyphenToLowerUnderscore() {
     assertEquals("foo", LOWER_HYPHEN.to(LOWER_UNDERSCORE, "foo"));
-    assertEquals("foo_bar", LOWER_HYPHEN.to(LOWER_UNDERSCORE, "foo-bar"));
+    assertEquals("foo_bar", LOWER_HYPHEN.to(LOWER_UNDERSCORE, "-foo-bar"));
   }
 
   public void testLowerHyphenToLowerCamel() {
@@ -72,7 +72,7 @@ public class CaseFormatTest extends TestCase {
 
   public void testLowerHyphenToUpperCamel() {
     assertEquals("Foo", LOWER_HYPHEN.to(UPPER_CAMEL, "foo"));
-    assertEquals("FooBar", LOWER_HYPHEN.to(UPPER_CAMEL, "foo-bar"));
+    assertEquals("FooBar", LOWER_HYPHEN.to(UPPER_CAMEL, "-foo-bar"));
   }
 
   public void testLowerHyphenToUpperUnderscore() {
